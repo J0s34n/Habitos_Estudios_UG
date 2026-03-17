@@ -1,0 +1,61 @@
+[
+  {
+    "model": "tests_app.test",
+    "pk": 1,
+    "fields": {
+      "nombre": "Gestión del Tiempo",
+      "descripcion": "Evalúa tu capacidad para organizar y gestionar tu tiempo de estudio.",
+      "activo": true
+    }
+  },
+  {
+    "model": "tests_app.pregunta",
+    "pk": 1,
+    "fields": {
+      "test": 1,
+      "texto": "¿Cómo organizas tu tiempo de estudio?",
+      "area": "tiempo",
+      "orden": 1
+    }
+  },
+  {
+    "model": "tests_app.opcion",
+    "pk": 1,
+    "fields": {
+      "pregunta": 1,
+      "texto": "Tengo un horario fijo y lo sigo con constancia.",
+      "peso": 1,
+      "letra": "A"
+    }
+  },
+  {
+    "model": "tests_app.opcion",
+    "pk": 2,
+    "fields": {
+      "pregunta": 1,
+      "texto": "Organizo mi estudio solo cuando hay exámenes.",
+      "peso": 3,
+      "letra": "B"
+    }
+  },
+  {
+    "model": "tests_app.opcion",
+    "pk": 3,
+    "fields": {
+      "pregunta": 1,
+      "texto": "No organizo mi tiempo; estudio cuando puedo.",
+      "peso": 4,
+      "letra": "C"
+    }
+  },
+  {
+    "model": "tests_app.opcion",
+    "pk": 4,
+    "fields": {
+      "pregunta": 1,
+      "texto": "A veces hago un plan, pero no siempre lo cumplo.",
+      "peso": 2,
+      "letra": "D"
+    }
+  }
+]

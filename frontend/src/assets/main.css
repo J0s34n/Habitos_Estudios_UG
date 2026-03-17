@@ -1,0 +1,39 @@
+@import './base.css';
+/* stylelint-disable-next-line at-rule-no-unknown */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.contenedor {
+  width: 100%;
+  max-width: fit-content;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+#app {
+  min-height: 100vh;
+  width: 100%;
+}
+
+body {
+  background: linear-gradient(135deg, #0a1628 0%, #0d2a5c 50%, #1a5a9f 100%);
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+a,
+.green {
+  text-decoration: none;
+  color: hsla(160, 100%, 37%, 1);
+  transition: 0.4s;
+  padding: 3px;
+}
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+
+
