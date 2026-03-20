@@ -37,7 +37,7 @@ class GenerarReporteView(APIView):
         if tipo == 'general':
             return {
                 'total_respuestas': resultados.count(),
-                'total_estudiantes': Usuario.objects.filter(rol='estudiante').count(),
+                'total_estudiantes': Usuario.objects.filter(rol='estudiante', is_superuser=False, is_staff=False).count(),
                 'total_tests': Test.objects.filter(activo=True).count(),
                 'promedio_tiempo': round(
                     resultados.aggregate(p=Avg('score_tiempo'))['p'] or 0, 1),
