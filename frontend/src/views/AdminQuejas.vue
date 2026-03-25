@@ -174,7 +174,7 @@ onMounted(async () => {
 
 async function marcarLeida(queja) {
   try {
-    await api.patch(`/usuarios/quejas/${queja.id}/`, { leida: true })
+    await api.patch(`/usuarios/quejas/${queja.uuid}/`, { leida: true })
     queja.leida = true
   } catch (e) {
     console.error(e)

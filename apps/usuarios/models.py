@@ -1,9 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import uuid
 
 class Usuario(AbstractUser):
     ROLES = [ ('admin', 'Administrador'), ('estudiante', 'Estudiante'), ('profesor', 'Profesor') ]
-
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     primer_apellido = models.CharField(max_length=100, blank=True)
     segundo_apellido = models.CharField(max_length=100, blank=True)
     rol = models.CharField(max_length=20, choices=ROLES, default='estudiante')
@@ -20,6 +21,7 @@ class Usuario(AbstractUser):
     
 class Queja(models.Model):
     TIPOS = [('queja', 'Queja'), ('sugerencia', 'Sugerencia')]
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     tipo = models.CharField(max_length=50, choices=TIPOS)
     comentario = models.TextField()
     email = models.EmailField(blank=True)

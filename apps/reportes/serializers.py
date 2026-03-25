@@ -9,5 +9,5 @@ class ReporteSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Reporte
-        fields = ['id', 'tipo', 'tipo_display', 'generado_por_nombre', 'fecha', 'datos']
-        read_only_fields = ['id', 'fecha', 'generado_por_nombre', 'datos']
+        fields = ['uuid', 'tipo', 'tipo_display', 'generado_por_nombre', 'fecha', 'datos']
+        read_only_fields = ['uuid', 'fecha', 'generado_por_nombre', 'datos']

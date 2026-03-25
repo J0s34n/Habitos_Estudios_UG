@@ -52,3 +52,4 @@ class DetalleQuejaView(generics.RetrieveDestroyAPIView):
     permission_classes = [permissions.IsAdminUser]
     queryset = Queja.objects.all()
     serializer_class = QuejaSerializer
+    lookup_field = 'uuid'

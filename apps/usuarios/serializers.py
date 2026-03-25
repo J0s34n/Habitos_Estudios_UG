@@ -19,8 +19,8 @@ class RegistroSerializer(serializers.ModelSerializer):
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['id', 'username', 'email', 'first_name', 'primer_apellido', 'segundo_apellido', 'rol', 'matricula', 'fecha_registro']
-        read_only_fields = ['id', 'fecha_registro', 'rol']
+        fields = ['uuid', 'username', 'email', 'first_name', 'primer_apellido', 'segundo_apellido', 'rol', 'matricula', 'fecha_registro']
+        read_only_fields = ['uuid', 'fecha_registro', 'rol']
 
 class CustomTokenSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
@@ -42,5 +42,5 @@ class CustomTokenSerializer(TokenObtainPairSerializer):
 class QuejaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Queja
-        fields = ['id', 'tipo', 'comentario', 'email', 'fecha', 'leida']
-        read_only_fields = ['id', 'fecha', 'leida']
+        fields = ['uuid', 'tipo', 'comentario', 'email', 'fecha', 'leida']
+        read_only_fields = ['uuid', 'fecha', 'leida']

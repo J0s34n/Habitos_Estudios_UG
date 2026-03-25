@@ -7,5 +7,5 @@ urlpatterns = [
     path('buzon-quejas/', BuzonQuejasView.as_view()),
     path('lista/', ListaUsuariosView.as_view()),
     path('quejas/', ListaQuejasView.as_view()),
-    path('quejas/<int:pk>/', DetalleQuejaView.as_view()),
+    path('quejas/<uuid:uuid>/', DetalleQuejaView.as_view()),
 ]

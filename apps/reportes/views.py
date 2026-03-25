@@ -93,3 +93,4 @@ class GenerarReporteView(APIView):
 class EliminarReporteView(generics.DestroyAPIView):
     permission_classes = [permissions.IsAdminUser]
     queryset = Reporte.objects.all()
+    lookup_field = 'uuid'

@@ -396,8 +396,8 @@ function confirmarEliminar(reporte) {
 
 async function eliminarReporte() {
   try {
-    await api.delete(`/reportes/${reporteAEliminar.value.id}/`)
-    reportes.value = reportes.value.filter(r => r.id !== reporteAEliminar.value.id)
+    await api.delete(`/reportes/${reporteAEliminar.value.uuid}/`)
+    reportes.value = reportes.value.filter(r => r.uuid !== reporteAEliminar.value.uuid)
     reporteAEliminar.value = null
   } catch (e) {
     console.error(e)

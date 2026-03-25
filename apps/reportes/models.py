@@ -1,5 +1,6 @@
 from django.db import models
 from django.conf import settings
+import uuid
 
 class Reporte(models.Model):
     TIPOS = [
@@ -7,7 +8,7 @@ class Reporte(models.Model):
         ('comparativa', 'Comparativa por Test'),
         ('criticas', 'Áreas Críticas de Atención'),
     ]
-
+    uuid = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     tipo = models.CharField(max_length=20, choices=TIPOS)
     generado_por = models.ForeignKey(settings.AUTH_USER_MODEL,
                                       on_delete=models.SET_NULL, null=True)
