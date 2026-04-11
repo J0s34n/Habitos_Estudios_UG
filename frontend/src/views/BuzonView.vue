@@ -31,17 +31,21 @@
         <!-- Comentarios -->
         <div class="mb-6">
           <label class="block font-bold mb-2 text-sm tracking-widest text-gray-700">COMENTARIOS:</label>
-          <input v-model="form.comentario" type="text"
-            class="w-full border border-gray-300 rounded-lg py-3 px-4
-                   focus:outline-none focus:border-blue-500 bg-gray-100" />
+        <input v-model="form.comentario" type="text"
+          class="w-full border border-gray-300 rounded-lg py-3 px-4
+                focus:outline-none focus:border-blue-500 bg-gray-100 text-gray-800
+                placeholder-gray-400" 
+          placeholder="Escribe tu comentario aquí..." />
         </div>
 
         <!-- Email -->
         <div class="mb-8">
           <label class="block font-bold mb-2 text-sm tracking-widest text-gray-700">EMAIL:</label>
           <input v-model="form.email" type="email"
-            class="w-full border border-gray-300 rounded-lg py-3 px-4
-                   focus:outline-none focus:border-blue-500 bg-gray-100" />
+          class="w-full border border-gray-300 rounded-lg py-3 px-4
+                focus:outline-none focus:border-blue-500 bg-gray-100 text-gray-800
+                placeholder-gray-400"
+          placeholder="tu@email.com" />
         </div>
 
         <div class="text-center">

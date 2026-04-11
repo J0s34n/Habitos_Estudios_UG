@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .serializers import RegistroSerializer, UsuarioSerializer, QuejaSerializer
 from django.contrib.auth import get_user_model
-from .models import Queja
+from .models import Queja, Usuario
 
 Usuario = get_user_model()
 
@@ -48,7 +48,7 @@ class ListaQuejasView(generics.ListAPIView):
     queryset = Queja.objects.all()
     serializer_class = QuejaSerializer
 
-class DetalleQuejaView(generics.RetrieveDestroyAPIView):
+class DetalleQuejaView(generics.RetrieveUpdateAPIView):
     permission_classes = [permissions.IsAdminUser]
     queryset = Queja.objects.all()
     serializer_class = QuejaSerializer
