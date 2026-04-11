@@ -1,0 +1,18 @@
+# Python
+venv/
+__pycache__/
+*.pyc
+*.pyo
+db.sqlite3
+*.joblib
+.env
+
+# Node
+frontend/node_modules/
+frontend/dist/
+
+# VS Code
+.vscode/
+
+# Mac
+.DS_Store

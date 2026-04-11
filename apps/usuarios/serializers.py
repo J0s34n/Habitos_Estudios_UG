@@ -19,8 +19,8 @@ class RegistroSerializer(serializers.ModelSerializer):
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
-        fields = ['uuid', 'username', 'email', 'first_name', 'primer_apellido', 'segundo_apellido', 'rol', 'matricula', 'fecha_registro']
-        read_only_fields = ['uuid', 'fecha_registro', 'rol']
+        fields = ['id', 'username', 'email', 'first_name', 'primer_apellido', 'segundo_apellido', 'rol', 'matricula', 'fecha_registro']
+        read_only_fields = ['id', 'fecha_registro', 'rol']
 
 class CustomTokenSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
