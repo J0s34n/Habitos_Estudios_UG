@@ -144,6 +144,23 @@
         </button>
       </div>
     </div>
+
+    <!-- Cambiar rol --> 
+    <div class="mt-4 pt-4 border-t border-white/10">
+      <p class="text-white/40 text-xs mb-3 font-bold">GESTIÓN DE ROL</p>
+      <button @click="cambiarRol(estudianteSeleccionado)"
+        :class="estudianteSeleccionado.rol === 'estudiante'
+          ? 'bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-400 border border-cyan-500/40'
+          : 'bg-red-500/20 hover:bg-red-500/40 text-red-400 border border-red-500/40'"
+        class="w-full font-bold py-2 rounded-lg text-sm transition-all">
+        {{ estudianteSeleccionado.rol === 'estudiante'
+          ? '⬆️ Promover a Administrador'
+          : '⬇️ Cambiar a Estudiante' }}
+      </button>
+      <p class="text-white/30 text-xs mt-2 text-center">
+        Rol actual: <span class="capitalize font-bold">{{ estudianteSeleccionado.rol }}</span>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -210,4 +227,18 @@ function formatFecha(fecha) {
     day: '2-digit', month: 'short', year: 'numeric'
   })
 }
+
+async function cambiarRol(est) {
+  try {
+    const { data } = await api.post(`/usuarios/${est.id}/cambiar-rol/`)
+    est.rol = data.nuevo_rol
+    // Actualizar en la lista principal
+    const idx = estudiantes.value.findIndex(e => e.id === est.id)
+    if (idx !== -1) estudiantes.value[idx].rol = data.nuevo_rol
+    alert(`Rol cambiado a ${data.nuevo_rol} exitosamente.`)
+  } catch (e) {
+    console.error(e)
+    alert('Error al cambiar el rol. Intenta de nuevo.')
+  }
+  }
 </script>
