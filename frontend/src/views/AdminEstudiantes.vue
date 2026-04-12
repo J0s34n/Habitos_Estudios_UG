@@ -231,7 +231,7 @@ function formatFecha(fecha) {
 
 async function cambiarRol(est) {
   try {
-    const { data } = await api.post(`/usuarios/${est.id}/cambiar-rol/`)
+    const { data } = await api.patch(`/usuarios/${est.id}/cambiar-rol/`)
     est.rol = data.nuevo_rol
     // Actualizar en la lista principal
     const idx = estudiantes.value.findIndex(e => e.id === est.id)
