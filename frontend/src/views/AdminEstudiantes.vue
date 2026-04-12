@@ -241,7 +241,7 @@ async function cambiarRol(est) {
     estudiantes.value = resEst.data
     // Actualizar el estudiante seleccionado con la nueva información
     estudianteSeleccionado.value = estudiantes.value.find(e => e.id === est.id) || null
-    alert(`Rol cambiado a ${data.nuevo_rol} exitosamente. El usuario debe cerrar sesión y volver a iniciar para que el cambio tome efecto.`)
+    alert(`Rol cambiado a ${data.rol} exitosamente. El usuario debe cerrar sesión y volver a iniciar para que el cambio tome efecto.`)
   } catch (e) {
     console.error(e)
     alert('Error al cambiar el rol. Intenta de nuevo.')
