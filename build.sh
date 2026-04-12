@@ -3,4 +3,7 @@ set -o errexit
 pip install -r requirements.txt
 python manage.py collectstatic --no-input
 python manage.py migrate
+python manage.py crear_admin
+python manage.py loaddata apps/tests_app/fixtures/test_initial.json
+python manage.py test_completo_og
 python manage.py shell -c "from apps.ml_engine.predictor import entrenar_modelo; entrenar_modelo()"
