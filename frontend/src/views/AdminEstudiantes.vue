@@ -235,8 +235,13 @@ async function cambiarRol(est) {
     est.rol = data.nuevo_rol
     // Actualizar en la lista principal
     const idx = estudiantes.value.findIndex(e => e.id === est.id)
-    if (idx !== -1) estudiantes.value[idx].rol = data.nuevo_rol
-    alert(`Rol cambiado a ${data.nuevo_rol} exitosamente.`)
+    if (idx !== -1) estudiantes.value[idx].rol = data.rol
+    // Recargar lista desde la BD para asegurar consistencia
+    const resEst = await api.get('/usuarios/lista/')
+    estudiantes.value = resEst.data
+    // Actualizar el estudiante seleccionado con la nueva información
+    estudianteSeleccionado.value = estudiantes.value.find(e => e.id === est.id) || null
+    alert(`Rol cambiado a ${data.nuevo_rol} exitosamente. El usuario debe cerrar sesión y volver a iniciar para que el cambio tome efecto.`)
   } catch (e) {
     console.error(e)
     alert('Error al cambiar el rol. Intenta de nuevo.')

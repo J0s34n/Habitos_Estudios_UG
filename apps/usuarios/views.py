@@ -61,11 +61,13 @@ class CambiarRolView(APIView):
         try:
             usuario = Usuario.objects.get(pk=pk, is_staff=False, is_superuser=False)
             rol_actual = usuario.rol
-            nuevo_rol = 'admin' if rol_actual == 'estudiante' else 'estudiante'
+            usuario.rol = 'admin' if rol_actual == 'estudiante' else 'estudiante'
+            usuario.is_staff = usuario.rol == 'admin'
             usuario.save()
             return Response({
-                'mensaje': f'Rol de {usuario.username} cambiado a {nuevo_rol}',
-                'nuevo_rol': nuevo_rol
+                'mensaje': f'Rol de {usuario.username} cambiado a {usuario.rol}',
+                'rol': usuario.rol,
+                'id': usuario.id
             })
         except Usuario.DoesNotExist:
             return Response({'error': 'Usuario no encontrado o no es modificable'}, status=status.HTTP_404_NOT_FOUND)
