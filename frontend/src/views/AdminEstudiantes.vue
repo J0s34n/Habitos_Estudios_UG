@@ -136,6 +136,22 @@
             </div>
           </div>
         </div>
+        <!-- Cambiar rol --> 
+        <div class="mt-4 pt-4 border-t border-white/10">
+          <p class="text-white/40 text-xs mb-3 font-bold">GESTIÓN DE ROL</p>
+          <button @click="cambiarRol(estudianteSeleccionado)"
+            :class="estudianteSeleccionado.rol === 'estudiante'
+              ? 'bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-400 border border-cyan-500/40'
+              : 'bg-red-500/20 hover:bg-red-500/40 text-red-400 border border-red-500/40'"
+            class="w-full font-bold py-2 rounded-lg text-sm transition-all">
+            {{ estudianteSeleccionado.rol === 'estudiante'
+              ? '⬆️ Promover a Administrador'
+              : '⬇️ Cambiar a Estudiante' }}
+          </button>
+          <p class="text-white/30 text-xs mt-2 text-center">
+            Rol actual: <span class="capitalize font-bold">{{ estudianteSeleccionado.rol }}</span>
+          </p>
+        </div>
 
         <button @click="estudianteSeleccionado = null"
           class="w-full mt-6 border border-white/20 text-white font-bold py-3
@@ -145,22 +161,7 @@
       </div>
     </div>
 
-    <!-- Cambiar rol --> 
-    <div class="mt-4 pt-4 border-t border-white/10">
-      <p class="text-white/40 text-xs mb-3 font-bold">GESTIÓN DE ROL</p>
-      <button @click="cambiarRol(estudianteSeleccionado)"
-        :class="estudianteSeleccionado.rol === 'estudiante'
-          ? 'bg-cyan-500/20 hover:bg-cyan-500/40 text-cyan-400 border border-cyan-500/40'
-          : 'bg-red-500/20 hover:bg-red-500/40 text-red-400 border border-red-500/40'"
-        class="w-full font-bold py-2 rounded-lg text-sm transition-all">
-        {{ estudianteSeleccionado.rol === 'estudiante'
-          ? '⬆️ Promover a Administrador'
-          : '⬇️ Cambiar a Estudiante' }}
-      </button>
-      <p class="text-white/30 text-xs mt-2 text-center">
-        Rol actual: <span class="capitalize font-bold">{{ estudianteSeleccionado.rol }}</span>
-      </p>
-    </div>
+
   </div>
 </template>
 
