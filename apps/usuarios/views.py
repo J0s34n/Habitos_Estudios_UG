@@ -1,3 +1,5 @@
+from urllib import request
+
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -71,3 +73,21 @@ class CambiarRolView(APIView):
             })
         except Usuario.DoesNotExist:
             return Response({'error': 'Usuario no encontrado o no es modificable'}, status=status.HTTP_404_NOT_FOUND)
+        
+class RestablecerPasswordView(APIView):
+    permission_classes = [permissions.IsAdminUser]
+
+    def patch(self, request, pk):
+        try:
+            usuario = Usuario.objects.get(pk=pk, is_superuser=False)
+            nueva_password = request.data.get('password')
+            if not nueva_password or len(nueva_password) < 6:
+                return Response(
+                    {'error': 'La contraseña debe tener al menos 6 caracteres'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            usuario.set_password(nueva_password)
+            usuario.save()
+            return Response({'mensaje': 'Contraseña actualizada correctamente'})
+        except Usuario.DoesNotExist:
+            return Response({'error': 'Usuario no encontrado'}, status=status.HTTP_404_NOT_FOUND)

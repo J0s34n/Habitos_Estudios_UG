@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import ( CambiarRolView, DetalleQuejaView, ListaQuejasView, RegistroView, PerfilView, BuzonQuejasView, ListaUsuariosView)
+from .views import ( CambiarRolView, DetalleQuejaView, ListaQuejasView, RegistroView, PerfilView, BuzonQuejasView, ListaUsuariosView, RestablecerPasswordView)
 
 urlpatterns = [
     path('registro/', RegistroView.as_view()),
@@ -9,4 +9,5 @@ urlpatterns = [
     path('quejas/', ListaQuejasView.as_view()),
     path('quejas/<uuid:uuid>/', DetalleQuejaView.as_view()),
     path('<int:pk>/cambiar-rol/', CambiarRolView.as_view()),
+    path('<int:pk>/restablecer-password/', RestablecerPasswordView.as_view()),
 ]

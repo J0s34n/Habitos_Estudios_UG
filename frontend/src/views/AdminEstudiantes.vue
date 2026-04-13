@@ -152,7 +152,24 @@
             Rol actual: <span class="capitalize font-bold">{{ estudianteSeleccionado.rol }}</span>
           </p>
         </div>
-
+        <!-- Restablecer contraseña -->
+        <div class="mt-4 pt-4 border-t border-white/10">
+          <p class="text-white/40 text-xs mb-3 font-bold">RESTABLECER CONTRASEÑA</p>
+          <div class="flex gap-2">
+            <input v-model="nuevaPassword" type="password"
+              placeholder="Nueva contraseña (mín. 6 caracteres)"
+              class="flex-1 bg-white/5 border border-white/20 rounded-lg py-2 px-3
+                    text-white text-sm focus:outline-none focus:border-cyan-400
+                    placeholder-white/30" />
+            <button @click="restablecerPassword(estudianteSeleccionado)"
+              class="bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 px-4
+                    rounded-lg text-sm transition-all">
+              Cambiar
+            </button>
+          </div>
+          <p v-if="mensajePassword" class="text-green-400 text-xs mt-2">{{ mensajePassword }}</p>
+          <p v-if="errorPassword" class="text-red-400 text-xs mt-2">{{ errorPassword }}</p>
+        </div>
         <button @click="estudianteSeleccionado = null"
           class="w-full mt-6 border border-white/20 text-white font-bold py-3
                  rounded-full hover:bg-white/10 transition-all">
@@ -247,4 +264,26 @@ async function cambiarRol(est) {
     alert('Error al cambiar el rol. Intenta de nuevo.')
   }
   }
+
+const nuevaPassword = ref('')
+const mensajePassword = ref('')
+const errorPassword = ref('')
+
+async function restablecerPassword(est) {
+  mensajePassword.value = ''
+  errorPassword.value = ''
+  if (!nuevaPassword.value || nuevaPassword.value.length < 6) {
+    errorPassword.value = 'La contraseña debe tener al menos 6 caracteres.'
+    return
+  }
+  try {
+    await api.patch(`/usuarios/${est.id}/restablecer-password/`, {
+      password: nuevaPassword.value
+    })
+    mensajePassword.value = 'Contraseña actualizada correctamente. El usuario debe usar la nueva contraseña para iniciar sesión.'
+    nuevaPassword.value = ''
+  } catch (e) {
+    errorPassword.value = e.response?.data?.error || 'Error al restablecer la contraseña. Intenta de nuevo.'
+}
+}
 </script>
